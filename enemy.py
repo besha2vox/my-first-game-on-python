@@ -9,11 +9,17 @@ def create_enemy_speed():
     return [random.randint(-4, -1), 0]
 
 
-enemy_size = (30, 30)
+enemy_size = (30, 50)
 enemy_color = (255, 20, 147)
 create_enemy_hit_box = create_hit_box(
     enemy_size, enemy_color, (WiDTH, [0, HEIGHT - 30]), ([-2, -1], 0))
 enemies_list = []
 
 CREATE_ENEMY = pygame.USEREVENT + 2
-pygame.time.set_timer(CREATE_ENEMY, 500)
+pygame.time.set_timer(CREATE_ENEMY, 1000)
+
+
+def delete_enemy():
+    for enemy in enemies_list:
+        if enemy[1].left < 0:
+            enemies_list.pop(enemies_list.index(enemy))
